@@ -8,11 +8,11 @@ jobs:
             - run:
                 name: The First Step
                 command: |
-                echo "Hello World!"
-                echo "This is the Delivery Pipeline"
+                   echo "Hello World!"
+                   echo "This is the Delivery Pipeline"
             - run:
                 name: code has arrived
                 command: |
-                ls -la
-                echo "^^^This should look Familiar^^^"
+                   ls -la
+                   echo "^^^This should look Familiar^^^"
                    
