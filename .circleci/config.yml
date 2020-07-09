@@ -1,18 +1,67 @@
 version: 2.1
 jobs:
-    build:
+    # Child-Job-1
+    Hello-World:  #
+        docker:
+            - image: alpine:3.7
+        steps:
+            # - checkout
+            - run:
+                name: Hello World
+                command: |
+                   echo "Hello World"
+                   echo "This is the delivery pipeline "
+    # Child-Job-2
+    I-Have-Code:
         docker:
             - image: alpine:3.7
         steps:
             - checkout
-            - run:
-                name: The First Step
-                command: |
-                   echo "Hello World!"
-                   echo "This is the Delivery Pipeline"
-            - run:
-                name: code has arrived
+            - run: 
+                name: Code Has Arrived
                 command: |
                    ls -la
-                   echo "^^^This should look Familiar^^^"
-                   
+                   echo "^^^That should look familier^^^"
+    # Child-Job-3
+    Run-With-Node:
+        docker:
+            - image: circleci/node:10-browsers
+        steps:
+            - run:
+                name: Running in a Container with Node
+                command: |
+                   node -v
+    # Child-Job-3
+    Now-Complete:
+        docker:
+            - image: alpine:3.7
+        steps:
+            - run:
+                name: Approval complete
+                command: |
+                   echo "Do work once the work has completed"
+
+workflows:
+    version: 2
+    Example_Workflow:
+        jobs:
+            - Hello-World
+            - I-Have-Code:
+                requires:
+                    - Hello-World
+            - Run-With-Node:
+                requires:
+                    - Hello-World
+            - Hold-For-Approval:
+                type: Approval
+                requires:
+                    - Run-With-Node
+                    - I-Have-Code
+            - Now-Complete:
+                requires:
+                    - Hold-For-Approval
+
+
+
+
+
