@@ -43,7 +43,7 @@ jobs:
 
 workflows:
     version: 2
-    Example_Workflow:
+    Example_Workflow: # Workflow Name
         jobs:
             - Hello-World
             - I-Have-Code:
@@ -53,7 +53,7 @@ workflows:
                 requires:
                     - Hello-World
             - Hold-For-Approval:
-                type: Approval
+                type: approval
                 requires:
                     - Run-With-Node
                     - I-Have-Code
@@ -62,6 +62,25 @@ workflows:
                     - Hold-For-Approval
 
 
+# workflows:
+#     version: 2
+#     ci: # Workflow name
+#         jobs:
+#             - build:
+#                 filters:  # Filters can have the key, BRANCHES, Tags
+#                     branches:
+#                         only:  # map to a single string naming branch
+#                            - /release\/.*/
+#                            - /feature\/.*/
 
+#                         ignore: # map to a single string naming branch
+#                             - /master\/.*/
+#     promote: # workflow name
+#         jobs:
+#             - jfrog_tag:
+#                 filters:
+#                     tags:
+#                         only:
+#                             - /ENV-UAT/
 
 
