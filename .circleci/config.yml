@@ -11,6 +11,11 @@ jobs:
                 command: |
                    echo "Hello World"
                    echo "This is the delivery pipeline "
+    runner-test:
+        machine: true
+        resource_class: pamarthich/testlocal
+        steps:
+            - run: echo "Hi I'm on Runners!"
     # Child-Job-2
     I-Have-Code:
         docker:
@@ -40,9 +45,14 @@ jobs:
                 name: Approval complete
                 command: |
                    echo "Do work once the work has completed"
+
+ 
 # added comment
 workflows:
-    version: 2
+    version: 2.1
+    testing:
+        jobs:
+           - runner-test
     Example_Workflow: # Workflow Name
         jobs:
             - Hello-World
