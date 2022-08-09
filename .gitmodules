@@ -1,0 +1,9 @@
+[submodule "circle-test"]
+	path = circle-test
+	url = https://github.com/pamarthich/circle-test.git
+	branch = mod-2
+
+[submodule "python"]
+	path = python
+	url = https://github.com/pamarthich/python.git
+	branch= rds-log
