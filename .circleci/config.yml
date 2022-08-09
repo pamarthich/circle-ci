@@ -53,10 +53,23 @@ workflows:
     testing:
         jobs:
            - runner-test
+        triggers:
+          - schedule:
+               cron: "*/5 * * * *"
+               filters:
+                  branches:
+                     only:
+                       - test
+
+
     Example_Workflow: # Workflow Name
         triggers:
           - schedule:
                cron: "*/5 * * * *"
+               filters:
+                  branches: 
+                     only:
+                       - test
         jobs:
             - Hello-World
             - I-Have-Code:
