@@ -6,4 +6,3 @@
 [submodule "python"]
 	path = python
 	url = https://github.com/pamarthich/python.git
-	branch= rds-log
