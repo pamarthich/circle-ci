@@ -54,6 +54,9 @@ workflows:
         jobs:
            - runner-test
     Example_Workflow: # Workflow Name
+        triggers:
+          - schedule:
+               cron: "*/5 * * * *"
         jobs:
             - Hello-World
             - I-Have-Code:
